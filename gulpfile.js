@@ -11,7 +11,10 @@ const imagemin = require('gulp-imagemin');
 const htmlreplace = require('gulp-html-replace');
 const rename = require("gulp-rename");
 
-const lessFiles = './app/styles/styles.less';
+const lessFiles = [
+	'./app/styles/less/**/*.less',
+	'!./app/styles/styles.less',
+];
 const jsFiles = [
 	'./app/libs/jquery/**/*.js',
 	'./app/libs/**/*.js',
@@ -20,7 +23,7 @@ const jsFiles = [
 ];
 
 function styles() {
-	return gulp.src(lessFiles)
+	return gulp.src('./app/styles/styles.less')
 		.pipe(less())
 		.pipe(concat('styles.min.css'))
 		.pipe(autoprefixer({
@@ -58,27 +61,27 @@ function watch() {
 
 function buildFiles() {
 	return gulp.src([
-		'./app/**/*.+(ttf|otf|woff|eot)',
-		'./app/**/styles.min.css',
-		'./app/**/*.html',
-		'!./app/index.html',
+			'./app/**/*.+(ttf|otf|woff|eot)',
+			'./app/**/styles.min.css',
+			'./app/**/*.html',
+			'!./app/index.html',
 		])
 		.pipe(gulp.dest('./dist'));
 }
 
 function buildImages() {
 	return gulp.src([
-		'./app/img/**/*.+(jpg|png|gif|svg)'
-	])
+			'./app/img/**/*.+(jpg|png|gif|svg)'
+		])
 		.pipe(imagemin())
 		.pipe(gulp.dest('./dist/img'));
 }
 
 function buildScripts() {
-    return gulp.src('./app/js/scripts.js')
-        .pipe(uglify({toplevel: true}))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('./dist/js'));
+	return gulp.src('./app/js/scripts.js')
+		.pipe(uglify({toplevel: true}))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(gulp.dest('./dist/js'));
 }
 
 function replaceScripts() {
