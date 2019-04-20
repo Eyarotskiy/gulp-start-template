@@ -1,9 +1,13 @@
-@font-face {
-	font-family: 'roboto-regular';
-	src: url('../fonts/roboto-regular/roboto-regular.eot');
-	src: url('../fonts/roboto-regular/roboto-regular.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/roboto-regular/roboto-regular.woff') format('woff'),
-	url('../fonts/roboto-regular/roboto-regular.ttf') format('truetype');
-	font-style: normal;
-	font-weight: normal;
+.font-face(@font-family) {
+	@font-face {
+		font-family: @font-family;
+		src: url('../fonts/@{font-family}/@{font-family}.eot');
+		src: url('../fonts/@{font-family}/@{font-family}.eot?iefix') format('embedded-opentype'),
+		url('../fonts/@{font-family}/@{font-family}.woff') format('woff'),
+		url('../fonts/@{font-family}/@{font-family}.ttf') format('truetype');
+		font-style: normal;
+		font-weight: normal;
+	}
 }
+
+.font-face('roboto-regular');

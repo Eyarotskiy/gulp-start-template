@@ -61,18 +61,18 @@ function watch() {
 
 function buildFiles() {
 	return gulp.src([
-			'./app/**/*.+(ttf|otf|woff|eot)',
-			'./app/**/styles.min.css',
-			'./app/**/*.html',
-			'!./app/index.html',
-		])
+		'./app/**/*.+(ttf|otf|woff|eot)',
+		'./app/**/styles.min.css',
+		'./app/**/*.html',
+		'!./app/index.html',
+	])
 		.pipe(gulp.dest('./dist'));
 }
 
 function buildImages() {
 	return gulp.src([
-			'./app/img/**/*.+(jpg|png|gif|svg)'
-		])
+		'./app/img/**/*.+(jpg|png|gif|svg)'
+	])
 		.pipe(imagemin())
 		.pipe(gulp.dest('./dist/img'));
 }
